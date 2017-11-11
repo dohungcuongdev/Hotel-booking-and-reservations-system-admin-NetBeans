@@ -19,11 +19,15 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/D:/thesis%20in%20process/Hotel-booking-and-reservations-system-admin/web/WEB-INF/view/common/navigation.jspf</file>
             <file>file:/D:/thesis%20in%20process/Hotel-booking-and-reservations-system-admin/web/WEB-INF/view/common/all-mes.jspf</file>
             <file>file:/D:/thesis%20in%20process/Hotel-booking-and-reservations-system-admin/web/WEB-INF/view/index.jsp</file>
             <file>file:/D:/thesis%20in%20process/Hotel-booking-and-reservations-system-admin/src/java/controller/MainController.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> 3ab76a7c6abd4391ff1bfab8e10aca13a775aae5
     </open-files>
 </project-private>
