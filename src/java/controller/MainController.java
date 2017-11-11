@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.IOException;
 import model.user.Administrator;
 import model.ApplicationData;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import model.Activity;
 import model.hotel.HotelRoom;
 import model.hotel.HotelService;
@@ -23,6 +25,9 @@ import model.user.FollowUsers;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
 import service.HotelItemService;
 import service.impl.HotelItemServiceImp;
 import service.UserService;
@@ -268,7 +273,7 @@ public class MainController {
         userService.seenNotification(id);
         model.put("activity", userService.getActivityBy(id));
         initialize(model);
-        model.put("emailsent","");
+        model.put("emailsent", "");
         return "reply Book Room";
     }
 
@@ -293,6 +298,24 @@ public class MainController {
         return "fqa";
     }
 
+    @RequestMapping(value = "/downloadCSV")
+    public void downloadCSV(HttpServletResponse response) {
+        response.setContentType("text/csv");
+        // creates mock data
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"", "follow-users.csv");
+        response.setHeader(headerKey, headerValue);
+        try ( // uses the Super CSV API to generate CSV data from the model data
+                ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(),
+                        CsvPreference.STANDARD_PREFERENCE)) {
+            String[] header = {"User_ip_address", "Page_access", "Date_access", "External_ip_address", "Username", "Duration", "Country"};
+            csvWriter.writeHeader(header);
+            for (FollowUsers r : userService.getListFollowUsers()) {
+                csvWriter.write(r, header);
+            }
+        } catch (IOException e) {}
+    }
+
     //initialize function
     private void initialize(ModelMap model) {
         List<Activity> listactivily = userService.getAllActivity();
@@ -305,11 +328,11 @@ public class MainController {
         model.put("listactivily", listactivily);
         model.put("listrooms", listrooms);
         model.put("listservices", listservices);
-        model.put("totalUsers", listusers.size()*100);
-        model.put("totalMessage", listactivily.size()*100);
-        model.put("totalRooms", listrooms.size()*100);
-        model.put("totalServices", listservices.size()*100);
-        
+        model.put("totalUsers", listusers.size() * 100);
+        model.put("totalMessage", listactivily.size() * 100);
+        model.put("totalRooms", listrooms.size() * 100);
+        model.put("totalServices", listservices.size() * 100);
+
     }
 
     private String initializeSingleRoom(ModelMap model, String roomname, String redirect) {
@@ -327,11 +350,11 @@ public class MainController {
         model.put("relatedServices", hotelItemService.getRelatedHotelServices(service.getType()));
         return redirect;
     }
-    
+
     private String replyEmail(String redirect, String id, ModelMap model) {
         model.put("activity", userService.getActivityBy(id));
         initialize(model);
-        return (redirect.equals("reply Book Room") || redirect.equals("reply Book Room")) ? redirect: "notification";
+        return (redirect.equals("reply Book Room") || redirect.equals("reply Book Room")) ? redirect : "notification";
     }
 
 }

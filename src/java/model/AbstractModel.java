@@ -55,20 +55,10 @@ public abstract class AbstractModel {
         return true;
     }
 
-    //lowercase first character of string
-    private String lowerFirstChar(String varname) {
-        return Character.toLowerCase(varname.charAt(0)) + varname.substring(1);
-    }
-
-    //uppercase first character of string
-    private String upperFirstChar(String varname) {
-        return Character.toUpperCase(varname.charAt(0)) + varname.substring(1);
-    }
-
     //get all variable name of class
-    public List<String> getVarsOfObject(Class anyClass) {
+    public List<String> getVarsOfObject(Object obj) {
         List<String> vars = new ArrayList();
-        Class testObject = anyClass.getClass();
+        Class testObject = obj.getClass();
         Method[] methods = testObject.getMethods();
         for (Method method : methods) {
             String name = method.getName();
@@ -85,6 +75,16 @@ public abstract class AbstractModel {
     public String getMethodValueOf(Class anyClass, String var) throws Exception {
         Method method = anyClass.getMethod("get" + upperFirstChar(var));
         return (String) method.invoke(anyClass);
+    }
+
+    //lowercase first character of string
+    private String lowerFirstChar(String varname) {
+        return Character.toLowerCase(varname.charAt(0)) + varname.substring(1);
+    }
+
+    //uppercase first character of string
+    private String upperFirstChar(String varname) {
+        return Character.toUpperCase(varname.charAt(0)) + varname.substring(1);
     }
 
     @Override

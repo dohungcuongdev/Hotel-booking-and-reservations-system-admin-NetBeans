@@ -17,6 +17,7 @@
                         </div>
                     </div>
                 </div>
+
                 <table id="follow-user-table">
                     <tr>
                         <th class="tr-p" onclick="sortNum(0, 'follow-user-table')">No.</th>
@@ -35,19 +36,21 @@
                             <td class="tr-p" onclick="location.href = '${pageContext.request.contextPath}/follow-user-ip/${user.user_ip_address}.htm'">${user.user_ip_address}</td>
                             <td class="tr-p" onclick="location.href = 'http://whatismyipaddress.com/ip/${user.external_ip_address}'">${user.external_ip_address}</td>
                             <td>${user.country}</td>
-                            <c:if test="${user.username == null}"> 
-                                <td>guest</td>
-                            </c:if>
-                            <c:if test="${user.username != null}"> 
-                                <td class="tr-p" onclick="location.href = '${pageContext.request.contextPath}/user/${user.username}.htm'">${user.username}</td>
-                            </c:if>
-                            <td>${user.date_access}</td>
-                            <td>${user.page_access}</td>
-                            <td>${user.durationTime}</td>
+                        <c:if test="${user.username == null}"> 
+                            <td>guest</td>
+                        </c:if>
+                        <c:if test="${user.username != null}"> 
+                            <td class="tr-p" onclick="location.href = '${pageContext.request.contextPath}/user/${user.username}.htm'">${user.username}</td>
+                        </c:if>
+                        <td>${user.date_access}</td>
+                        <td>${user.page_access}</td>
+                        <td>${user.durationTime}</td>
                         </tr>
                     </c:forEach>
                 </table>
             </div>
+            <br><center><button class="btn btn-danger" onclick="location.href = '${pageContext.request.contextPath}/downloadCSV.htm'">
+                    <b>Download CSV</b> <i class="fa fa-download"></i></button></center>
             <!-- /.box-body -->
         </div>
         <!-- /.box -->
