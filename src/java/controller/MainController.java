@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import model.Activity;
 import model.hotel.HotelRoom;
 import model.hotel.HotelService;
 import model.user.Customer;
@@ -82,7 +84,6 @@ public class MainController {
     @RequestMapping(value = "manage-rooms", method = RequestMethod.GET)
     public String manageRooms(ModelMap model) {
         initialize(model);
-        model.put("listrooms", hotelItemService.getAllRooms());
         return "manage-rooms";
     }
 
@@ -136,7 +137,6 @@ public class MainController {
     @RequestMapping(value = "manage-restaurant", method = RequestMethod.GET)
     public String manageRestaurant(ModelMap model) {
         initialize(model);
-        model.put("listservices", hotelItemService.getAllHotelServices());
         return "manage-restaurant";
     }
 
@@ -190,7 +190,6 @@ public class MainController {
     @RequestMapping(value = "manage-users", method = RequestMethod.GET)
     public String manageUsers(ModelMap model) {
         initialize(model);
-        model.put("listusers", userService.getAllCustomers());
         model.put("cusDataCollection", userService.getDataCollection());
         return "manage-users";
     }
@@ -296,9 +295,21 @@ public class MainController {
 
     //initialize function
     private void initialize(ModelMap model) {
+        List<Activity> listactivily = userService.getAllActivity();
+        List<HotelRoom> listrooms = hotelItemService.getAllRooms();
+        List<HotelService> listservices = hotelItemService.getAllHotelServices();
+        List<Customer> listusers = userService.getAllCustomers();
         model.put("ad", ApplicationData.admin);
+        model.put("listusers", listusers);
         model.put("newNotifications", userService.getNewListNotification());
-        model.put("listactivily", userService.getAllActivity());
+        model.put("listactivily", listactivily);
+        model.put("listrooms", listrooms);
+        model.put("listservices", listservices);
+        model.put("totalUsers", listusers.size()*100);
+        model.put("totalMessage", listactivily.size()*100);
+        model.put("totalRooms", listrooms.size()*100);
+        model.put("totalServices", listservices.size()*100);
+        
     }
 
     private String initializeSingleRoom(ModelMap model, String roomname, String redirect) {

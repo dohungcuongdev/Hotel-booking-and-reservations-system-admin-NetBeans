@@ -1,35 +1,33 @@
 <div class="row" style="margin-bottom:5px;">
-
-
-    <div class="col-md-3" class="tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-users.htm'">
+    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-users.htm'">
         <div class="sm-st clearfix">
             <span class="sm-st-icon st-red"><i class="fa fa-user"></i></span>
             <div class="sm-st-info">
-                <span>3200</span> Total User
+                <span>${totalUsers}</span> Total User
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="sm-st clearfix" class="tr-p" onclick="location.href = '${pageContext.request.contextPath}/message.htm'">
+    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/message.htm'">
+        <div class="sm-st clearfix">
             <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
             <div class="sm-st-info">
-                <span>2200</span> Total Messages
+                <span>${totalMessage}</span> Total Messages
             </div>
         </div>
     </div>
-    <div class="col-md-3" class="tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-rooms.htm'">
+    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-rooms.htm'">
         <div class="sm-st clearfix">
             <span class="sm-st-icon st-blue"><i class="fa fa-building-o"></i></span>
             <div class="sm-st-info">
-                <span>100,320</span> Total Rooms
+                <span>${totalRooms}</span> Total Rooms
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="sm-st clearfix" class="tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-restaurant.htm'">
+    <div class="col-md-3 tr-p" onclick="location.href = '${pageContext.request.contextPath}/manage-restaurant.htm'">
+        <div class="sm-st clearfix">
             <span class="sm-st-icon st-green"><i class="fa fa-glass"></i></span>
             <div class="sm-st-info">
-                <span>4567</span> Total Services
+                <span>${totalServices}</span> Total Services
             </div>
         </div>
     </div>
