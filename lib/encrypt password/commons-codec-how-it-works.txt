@@ -1,0 +1,1 @@
+go to C:\Program Files\Java\jdk1.8.0_60\jre\lib\security extra and replace jce_policy-8.zip
