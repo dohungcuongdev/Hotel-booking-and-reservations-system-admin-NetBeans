@@ -18,7 +18,7 @@
             <div class="panel-body" id="all-message-box">
 
                 <c:choose>
-                    <c:when test="${listactivily.size() <= 0}"> 
+                    <c:when test="${totalMessage <= 0}"> 
                         <div class="alert alert-block alert-danger" style="text-align: center">
                             <strong>No notification available!</strong> 
                         </div>
