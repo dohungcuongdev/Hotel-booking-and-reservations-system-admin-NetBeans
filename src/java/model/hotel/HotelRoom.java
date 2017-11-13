@@ -5,10 +5,11 @@
  */
 package model.hotel;
 
-import DAO.user.ImpCustomerDAO;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import model.AppData;
 import service.application.CalculatorService;
+import service.impl.UserServiceImp;
 
 /**
  *
@@ -117,18 +118,18 @@ public class HotelRoom extends HotelItem {
     }
 
     private boolean isInvalidType() {
-        return !type.equals("deluxe") && !type.equals("family") && !type.equals("couple") && !type.equals("single");
+        return !AppData.ROOM_TYPES.contains(type);
     }
 
     private boolean isInvalidStatus() {
-        return !status.equals("available") && !status.equals("booked");
+        return !AppData.ROOM_STATUS.contains(status);
     }
 
     private boolean isBookedbyCorrect() {
         if (status.equals("booked")) {
             if (!checkNotNull(booked_by, checkin, checkout)) {
                 return false;
-            } else if (!new ImpCustomerDAO().checkexsitCustomer(booked_by)) {
+            } else if (!new UserServiceImp().checkexsitCustomer(booked_by)) {
                 return false;
             }
         }
@@ -158,17 +159,17 @@ public class HotelRoom extends HotelItem {
 
     public String getAbleToEdit() {
         if (!isEnoughInfor()) {
-            return "Please input all the information!";
+            return AppData.INFOR_NOT_ENOUGH;
         } else if(!isNumberFormat()) {
-            return "Price, Size, Star and Number of Adults must be a positive natural number!";
+            return AppData.WRONG_NUMBER_FORMAT_ROOM;
         } else if (isInvalidType()) {
-            return "Type must be deluxe, family, couple or single!";
+            return AppData.WRONG_TYPE_ROOM;
         } else if (isInvalidStatus()) {
-            return "Status must be available or booked!";
+            return AppData.WRONG_STATUS_ROOM;
         } else if (!isvalidDate()) {
-            return "The checkin date and checkout date is not accepted!";
+            return AppData.WRONG_CHECKIN_CHECKOUT;
         }
-        return "success";
+        return AppData.ABLE_TO_EDIT;
     }
 
     public boolean allInforCorrect() {
@@ -199,8 +200,7 @@ public class HotelRoom extends HotelItem {
 
     @Override
     public String toString() {
-        return "Name: " + name + "\n" + star + "★" + "\nnum vote: " + numvote + "\nType: " + type + "\nPrice: " + price + "\nImage: " + img + "\nSize: " + size
-                + "\nNumber of people: " + numpeople + "\nStatus: " + status + "\nAmenities: " + amenities + "\nBooked by: " + booked_by + "\nCheck in: " + checkin + "\nCheck out: " + checkout;
+        return "HotelRoom{" + "size=" + size + ", numpeople=" + numpeople + ", status=" + status + ", amenities=" + amenities + ", booked_by=" + booked_by + ", avgAminities=" + avgAminities + ", checkin=" + checkin + ", checkout=" + checkout + ", star=" + star + ", numvote=" + numvote + '}';
     }
 
 }

@@ -16,6 +16,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import model.AppData;
 
 /**
  *
@@ -25,18 +26,18 @@ public class MailService {
 
     public static String sendEmail(String message, String sendto, String subject) {
         if(message == null || message.equals("") || subject == null || subject.equals("")) {
-            return "Please input subject and message!";
+            return AppData.EMAIL_NO_SUBJECT_MES;
         }
-        String from = "cuongvip1295@gmail.com";
-        String login = "cuongvip1295@gmail.com";
-        String password = "Cuong@123";
+        String from = AppData.EMAIL;
+        String login = AppData.EMAIL;
+        String password = AppData.EMAILPASSWORD;
         try {
             Properties props = new Properties();
-            props.setProperty("mail.host", "smtp.gmail.com");
-            props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.auth", "true");
-            props.setProperty("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+            props.setProperty("mail.host", AppData.MAIL_HOST);
+            props.setProperty("mail.smtp.port", AppData.MAIL_SMTP_PORT);
+            props.setProperty("mail.smtp.auth", AppData.MAIL_SMTP_AUTH);
+            props.setProperty("mail.smtp.starttls.enable", AppData.MAIL_SMTP_STARTTLS_ENABLE);
+            props.put("mail.smtp.ssl.trust", AppData.MAIL_SMTP_SSS_TRUST);
             Authenticator auth = new SMTPAuthenticator(login, password);
             Session session = Session.getInstance(props, auth);
             MimeMessage msg = new MimeMessage(session);
@@ -46,13 +47,13 @@ public class MailService {
             msg.addRecipient(Message.RecipientType.TO, new InternetAddress(sendto));
             Transport.send(msg);
         } catch (AuthenticationFailedException ex) {
-            return "Authentication failed";
+            return AppData.AUTH_FAIL;
         } catch (AddressException ex) {
-            return "Wrong email address";
+            return AppData.WRONG_EMAIL_ADDRESS;
         } catch (MessagingException ex) {
-            return "ErrorMessage";
+            return AppData.ERROR_MESSAGE;
         }
-        return "Sent successfully";
+        return AppData.EMAIL_SENT;
     }
 
     private static class SMTPAuthenticator extends Authenticator {

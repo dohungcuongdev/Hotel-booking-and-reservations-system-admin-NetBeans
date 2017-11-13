@@ -64,6 +64,6 @@ public class Customer extends User {
 
     @Override
     public String toString() {
-        return "username=" + username + "\npassword=" + password + "\nphone=" + phone + "\naddress=" + address + "\nregistered_date=" + registered_date + "\ndateVisit=" + dateVisit;
+        return "Customer{" + "activity=" + activity + ", address=" + address + ", registered_date=" + registered_date + ", dateVisit=" + dateVisit + '}';
     }
 }

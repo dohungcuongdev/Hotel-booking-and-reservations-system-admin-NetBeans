@@ -49,7 +49,7 @@
             <div class="panel-body" id="activity-box">
 
                 <c:forEach var="activity" items="${customer.activity}">
-                    <c:if test="${activity.click.equals('feedback')}"> 
+                    <c:if test="${activity.name.contains('Feedback')}"> 
                         <div class="alert alert-block alert-warning">
                             <button data-dismiss="alert" class="close close-sm" type="button">
                                 <i class="fa fa-times"></i>

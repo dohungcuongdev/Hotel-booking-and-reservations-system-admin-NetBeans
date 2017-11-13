@@ -10,6 +10,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import java.net.UnknownHostException;
+import model.AppData;
 import org.bson.types.ObjectId;
 
 /**
@@ -19,8 +20,8 @@ import org.bson.types.ObjectId;
 public class MongoDBConnector {
 
     public static DBCollection createConnection(String collectionName) throws UnknownHostException {
-        MongoClient mongoClient = new MongoClient("localhost", 27017);
-        DB db = mongoClient.getDB("HotelBookingReservationsSystem");
+        MongoClient mongoClient = new MongoClient(AppData.DATABASE_HOST, AppData.DATABASE_PORT);
+        DB db = mongoClient.getDB(AppData.DATABASE);
         return db.getCollection(collectionName);
     }
 

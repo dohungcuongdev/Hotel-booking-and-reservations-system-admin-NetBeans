@@ -7,7 +7,7 @@ package controller;
 
 import java.io.IOException;
 import model.user.Administrator;
-import model.ApplicationData;
+import model.AppData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -49,7 +49,7 @@ public class MainController {
 
     //index
     @RequestMapping(value = "index", method = RequestMethod.GET)
-    public String index(ModelMap model) {
+    public String index(ModelMap model) throws IOException {
         initialize(model);
         ArrayList<FollowUsers> list = userService.getListFollowUsers();
         model.put("jsonchart", userService.getFollowUsersCountry(list));
@@ -69,10 +69,10 @@ public class MainController {
     public String editProfile(@ModelAttribute(value = "adminEdit") Administrator ad, ModelMap model) {
         if (ad.isEnoughInfor()) {
             userService.updateAdmin(ad);
-            ApplicationData.admin = ad;
-            model.put("editResult", "success");
+            AppData.admin = ad;
+            model.put("editResult", AppData.EDITSUCCESS);
         } else {
-            model.put("editResult", "Please input enough information!");
+            model.put("editResult", AppData.INFOR_NOT_ENOUGH);
         }
         initialize(model);
         return "profile";
@@ -80,8 +80,8 @@ public class MainController {
 
     @RequestMapping(value = "profile-img-edited", method = RequestMethod.POST)
     public String profileImgEdited(@RequestParam(value = "img") CommonsMultipartFile img, HttpServletRequest request, ModelMap model) {
-        userService.editProfileImg(ApplicationData.admin.getUsername(), appService.uploadfile(img, request, model, "users"));
-        ApplicationData.refreshAdmin();
+        userService.editProfileImg(AppData.admin.getUsername(), appService.uploadfile(img, request, model, "users"));
+        AppData.refreshAdmin();
         return profile(model);
     }
 
@@ -302,13 +302,13 @@ public class MainController {
     public void downloadCSV(HttpServletResponse response) {
         response.setContentType("text/csv");
         // creates mock data
-        String headerKey = "Content-Disposition";
-        String headerValue = String.format("attachment; filename=\"%s\"", "follow-users.csv");
+        String headerKey = AppData.HEADERKEY;
+        String headerValue = String.format(AppData.CSV_FORMAT, AppData.CSV_FILENAME);
         response.setHeader(headerKey, headerValue);
         try ( // uses the Super CSV API to generate CSV data from the model data
                 ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(),
                         CsvPreference.STANDARD_PREFERENCE)) {
-            String[] header = {"User_ip_address", "Page_access", "Date_access", "External_ip_address", "Username", "Duration", "Country"};
+            String[] header = AppData.HEADERCSV;
             csvWriter.writeHeader(header);
             for (FollowUsers r : userService.getListFollowUsers()) {
                 csvWriter.write(r, header);
@@ -322,7 +322,7 @@ public class MainController {
         List<HotelRoom> listrooms = hotelItemService.getAllRooms();
         List<HotelService> listservices = hotelItemService.getAllHotelServices();
         List<Customer> listusers = userService.getAllCustomers();
-        model.put("ad", ApplicationData.admin);
+        model.put("ad", AppData.admin);
         model.put("listusers", listusers);
         model.put("newNotifications", userService.getNewListNotification());
         model.put("listactivily", listactivily);

@@ -110,9 +110,9 @@
             <div class="panel-body">
                 <div class="twt-area">
                     <form action="${pageContext.request.contextPath}/send-mail.htm" method="post" accept-charset="UTF-8">
-                        <textarea name="message" class="form-control" name="profile-tweet" placeholder="Write something on reply.." rows="7"></textarea>
+                        <textarea name="message" class="form-control" placeholder="Write something on reply.." rows="7"></textarea>
                         <input type="hidden" name="activity-id" value="${activity.id}"/>
-                        <input type="hidden" name="user-email" value="${activity.username}"/>
+                        <input type="hidden" name="user-email" value="${activity.email}"/>
                         <input type="hidden" name="subject" value="${activity.name}"/>
                         <div class="clearfix">
                             <button class="btn btn-sm btn-primary pull-right" type="submit">
@@ -137,7 +137,7 @@
                         <textarea class="form-control" name="message" placeholder="Write something on reply.." rows="14">Dear Mr. Đỗ Hùng Cường, &#13;&#13;Thank you for your interest in our hotel. This email is to acknowledge the receipt of your email and thank you for sending us your request. We will carefully review your request. Should your request match our ability, we will contact you soon. In other cases, we will keep the request for future opportunities.&#13;&#13;With best regards, .&#13Hùng Cường.&#13&#13...&#13Holiday Crown.&#13Address: 24 Street 7, Bình An Ward, District 2.&#13Phone Number: 0908998923.&#13Hotline: (08).37404802.
                         </textarea>
                         <input type="hidden" name="activity-id" value="${activity.id}"/>
-                        <input type="hidden" name="user-email" value="${activity.username}"/>
+                        <input type="hidden" name="user-email" value="${activity.email}"/>
                         <input type="hidden" name="subject" value="${activity.name}"/>
 
                         <div class="clearfix">
@@ -159,9 +159,13 @@
             </header>
             <div class="panel-body">
                 <div class="twt-area">
-                    <form action="#" method="post">
-                        <textarea class="form-control" name="profile-tweet" placeholder="Write something on reply.." rows="14">Dear Mr. Đỗ Hùng Cường, &#13;&#13;Thank you for your interest in our hotel. This email is to acknowledge the receipt of your email and thank you for sending us your request. We will carefully review your request. Should your request match our ability, we will contact you soon. In other cases, we will keep the request for future opportunities.&#13;&#13;With best regards, .&#13Hùng Cường.&#13&#13...&#13Holiday Crown.&#13Address: 24 Street 7, Bình An Ward, District 2.&#13Phone Number: 0908998923.&#13Hotline: (08).37404802.
+                    <form action="${pageContext.request.contextPath}/send-mail.htm" method="post" accept-charset="UTF-8">
+                        <textarea class="form-control" name="message" placeholder="Write something on reply.." rows="14">Dear Mr. Đỗ Hùng Cường, &#13;&#13;Thank you for your interest in our hotel. This email is to acknowledge the receipt of your email and thank you for sending us your request. We will carefully review your request. Should your request match our ability, we will contact you soon. In other cases, we will keep the request for future opportunities.&#13;&#13;With best regards, .&#13Hùng Cường.&#13&#13...&#13Holiday Crown.&#13Address: 24 Street 7, Bình An Ward, District 2.&#13Phone Number: 0908998923.&#13Hotline: (08).37404802.
                         </textarea>
+
+                        <input type="hidden" name="activity-id" value="${activity.id}"/>
+                        <input type="hidden" name="user-email" value="${activity.email}"/>
+                        <input type="hidden" name="subject" value="${activity.name}"/>
 
                         <div class="clearfix">
                             <button class="btn btn-sm btn-primary pull-right" type="submit">

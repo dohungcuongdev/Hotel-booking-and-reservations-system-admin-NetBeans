@@ -145,10 +145,7 @@ public class Activity extends AbstractModel {
 
     @Override
     public String toString() {
-        return "id: " + id + "\nname: " + name + "\nusername: " + username
-                + "\nclick: " + click + "\ndetails: " + details
-                + "\nnote: " + note + "\ncontent: " + content
-                + "\ntime: " + time + "\nresponse: " + response;
+        return "Activity{" + "id=" + id + ", username=" + username + ", click=" + click + ", details=" + details + ", note=" + note + ", content=" + content + ", time=" + time + ", response=" + response + ", fullname=" + fullname + ", email=" + email + ", phone=" + phone + '}';
     }
 
     public static class CompareDateTime implements Comparator<Activity> {

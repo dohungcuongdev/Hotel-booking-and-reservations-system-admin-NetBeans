@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.AppData;
 
 /**
  *
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
 public class CalculatorService {
 
     public static Date getDateTime(String created_at) {
-        SimpleDateFormat myFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss 'ICT' yyyy");
+        SimpleDateFormat myFormat = new SimpleDateFormat(AppData.DATE_FORMAT);
         try {
             return myFormat.parse(created_at);
         } catch (ParseException ex) {

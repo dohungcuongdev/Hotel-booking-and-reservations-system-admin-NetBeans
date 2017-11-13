@@ -114,7 +114,6 @@ public class CustomerDataCollection {
 
     @Override
     public String toString() {
-        return "\n-------------------\n" + "\n" + cus + "\nroomBooked=" + roomBooked + "\nroomCanceled=" + roomCanceled + "\ndateVisited=" + dateVisited + "\navgfeedbackRoom=" + avgfeedbackRoom + "\navgFeedbackSV=" + avgFeedbackSV + "\n-------------------\n";
+        return "CustomerDataCollection{" + "cus=" + cus + ", roomBooked=" + roomBooked + ", roomCanceled=" + roomCanceled + ", dateVisited=" + dateVisited + ", feedbackroom=" + feedbackroom + ", avgfeedbackRoom=" + avgfeedbackRoom + ", avgFeedbackSV=" + avgFeedbackSV + '}';
     }
-
 }

@@ -8,6 +8,7 @@ package service.application;
 import java.io.File;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
+import model.AppData;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -20,18 +21,18 @@ public class FileUploadService {
     public static String uploadfile(CommonsMultipartFile commonsMultipartFiles, HttpServletRequest request, ModelMap model, String itemType) {
         String nameFile = commonsMultipartFiles.getOriginalFilename();
         if (!"".equals(nameFile)) {
-            String dirFile = request.getServletContext().getRealPath("resources/img/" + itemType);
+            String dirFile = request.getServletContext().getRealPath(AppData.IMAGE_RESOURCES + itemType);
             File fileDir = new File(dirFile);
             if (!fileDir.exists()) {
                 fileDir.mkdir();
             }
             try {
                 commonsMultipartFiles.transferTo(new File(fileDir + File.separator + nameFile));
-                model.put("editResult", "success");
+                model.put("editResult", AppData.EDITSUCCESS);
                 return nameFile;
             } catch (IOException | IllegalStateException e) {
                 System.out.println(e.getMessage());
-                model.put("editResult", "error");
+                model.put("editResult", AppData.ERROR);
             }
         }
         return "";

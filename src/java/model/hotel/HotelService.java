@@ -5,6 +5,8 @@
  */
 package model.hotel;
 
+import model.AppData;
+
 /**
  *
  * @author Do Hung Cuong
@@ -45,7 +47,7 @@ public class HotelService extends HotelItem {
     }
 
     public void initializeServeTime() {
-        serveTime = (serveType.equalsIgnoreCase("breakfast")) ? "7:00 am to 10:00 am" : (serveType.equalsIgnoreCase("lunch")) ? serveTime = "11:00 am to 4:00 pm" : (serveType.equalsIgnoreCase("dinner")) ? serveTime = "5:00 pm to 9:00 pm" : (serveType.equalsIgnoreCase("snack")) ? serveTime = "Anytime" : "";
+        serveTime = AppData.MEALS_TIME.get(AppData.MEALS_TYPES.indexOf(serveType));
     }
 
     private boolean isEnoughInfor() {
@@ -58,22 +60,22 @@ public class HotelService extends HotelItem {
     }
 
     private boolean isInvalidType() {
-        return !type.equals("food") && !type.equals("drink") && !type.equals("fruit") && !type.equals("ice-cream");
+        return !AppData.SERVICE_TYPES.contains(type);
     }
 
     private boolean isInvalidServeType() {
-        return !serveType.equals("breakfast") && !serveType.equals("lunch") && !serveType.equals("dinner") && !serveType.equals("snack");
+        return !AppData.MEALS_TYPES.contains(serveType);
     }
 
     public String getAbleToEdit() {
         if (!isEnoughInfor()) {
-            return "Please input all the information!";
+            return AppData.INFOR_NOT_ENOUGH;
         } else if (isInvalidType()) {
-            return "Type must be food, drink, fruit or ice-cream!";
+            return AppData.WRONG_TYPE_SERVICE;
         } else if (isInvalidServeType()) {
-            return "Serve type must be breafast, lunch, dinner or snack!";
+            return AppData.INVALID_SERVICE_TYPE;
         }
-        return "success";
+        return AppData.ABLE_TO_EDIT;
     }
 
     public HotelService() {
@@ -89,7 +91,7 @@ public class HotelService extends HotelItem {
 
     @Override
     public String toString() {
-        return "Name: " + name + "\nType: " + type + "\nPrice: " + price + "\nImage: " + img + "\nQuantity: " + quantity + "\nDetails: " + details + "\nNote: " + note + "\nServeType: " + serveType + "\nServeTime: " + serveTime;
+        return "HotelService{" + "quantity=" + quantity + ", note=" + note + ", serveType=" + serveType + ", serveTime=" + serveTime + '}';
     }
 
 }

@@ -61,7 +61,7 @@ public class Notification extends AbstractModel {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Notification{" + "id=" + id + ", created_at=" + created_at + ", contents=" + contents + ", type=" + type + '}';
     }
 
 }
