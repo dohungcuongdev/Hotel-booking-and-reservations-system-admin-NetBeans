@@ -23,19 +23,19 @@ import model.user.FollowUsers;
  */
 public interface UserService {    
     
-    public ArrayList<FollowUsers> getListFollowUsers();
+    public List<FollowUsers> getListFollowUsers();
     
-    public Map getFollowUsersMap(ArrayList<FollowUsers> list);
+    public Map getFollowUsersMap(List<FollowUsers> list);
     
-    public Map getFollowUsersMapByIP(ArrayList<FollowUsers> list);
+    public Map getFollowUsersMapByIP(List<FollowUsers> list);
     
-    public Map getFollowUsersMapByOneIP(ArrayList<FollowUsers> list, String ip);
+    public Map getFollowUsersMapByOneIP(List<FollowUsers> list, String ip);
     
-    public Map getMapFollowUsersCountry(ArrayList<FollowUsers> list);
+    public Map getMapFollowUsersCountry(List<FollowUsers> list);
     
-    public String getFollowUsersCountry(ArrayList<FollowUsers> list); 
+    public String getFollowUsersCountry(List<FollowUsers> list); 
     
-    public List<ChartData> getListFollowUsersChartData(ArrayList<FollowUsers> list);
+    public List<ChartData> getListFollowUsersChartData(List<FollowUsers> list);
     
     public Customer getCustomerByName(String username);
 
@@ -43,9 +43,9 @@ public interface UserService {
 
     public boolean checkexsitCustomer(String username);
      
-    public ArrayList<String> getDateVisit(String username);
+    public List<String> getDateVisit(String username);
     
-    public ArrayList<DataCollection> getListRoomBooked(String username);
+    public List<DataCollection> getListRoomBooked(String username);
     
     public List<DataCollection> getListRoomCanceled(String username);
     

@@ -13,11 +13,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Activity;
+import model.LoginBean;
 import model.hotel.HotelRoom;
 import model.hotel.HotelService;
 import model.user.Customer;
@@ -49,12 +49,27 @@ public class MainController {
 
     //index
     @RequestMapping(value = "index", method = RequestMethod.GET)
-    public String index(ModelMap model) throws IOException {
+    public String index(ModelMap model) {
         initialize(model);
-        ArrayList<FollowUsers> list = userService.getListFollowUsers();
+        List<FollowUsers> list = userService.getListFollowUsers();
         model.put("jsonchart", userService.getFollowUsersCountry(list));
         model.put("listchartData", userService.getListFollowUsersChartData(list));
         return "index";
+    }
+
+    //login
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+
+    //checklogin
+    @RequestMapping(value = "check-login", method = RequestMethod.POST)
+    public String checklogin(@ModelAttribute(value = "loginbean") LoginBean loginbean, ModelMap model) throws IOException {
+        if (loginbean.getUserName().equals("cuongvip1295@yahoo.com.vn") && loginbean.getPassword().equals("12101995")) {
+            return index(model);
+        }
+        return "login";
     }
 
     //profile
@@ -202,7 +217,7 @@ public class MainController {
     @RequestMapping(value = "follow-users", method = RequestMethod.GET)
     public String followUsers(ModelMap model) {
         initialize(model);
-        ArrayList<FollowUsers> list = userService.getListFollowUsers();
+        List<FollowUsers> list = userService.getListFollowUsers();
         model.put("listFollowUsers", list);
 
         model.put("mapFollowUsers", userService.getFollowUsersMap(list));
@@ -213,7 +228,7 @@ public class MainController {
     @RequestMapping(value = "follow-user-chart", method = RequestMethod.GET)
     public String followUserChart(ModelMap model) {
         initialize(model);
-        ArrayList<FollowUsers> list = userService.getListFollowUsers();
+        List<FollowUsers> list = userService.getListFollowUsers();
         model.put("jsonchart", userService.getFollowUsersCountry(list));
         return "follow-user-chart";
     }
@@ -221,7 +236,7 @@ public class MainController {
     @RequestMapping(value = "follow-user-ip/{ip}", method = RequestMethod.GET)
     public String followUsersIP(@PathVariable(value = "ip") String ip, ModelMap model) {
         initialize(model);
-        ArrayList<FollowUsers> list = userService.getListFollowUsers();
+        List<FollowUsers> list = userService.getListFollowUsers();
         model.put("listFollowUsers", list);
         model.put("mapFollowUserIP", userService.getFollowUsersMapByOneIP(list, ip));
         return "follow-user-ip";
@@ -313,7 +328,8 @@ public class MainController {
             for (FollowUsers r : userService.getListFollowUsers()) {
                 csvWriter.write(r, header);
             }
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
     }
 
     //initialize function

@@ -19,7 +19,7 @@ public class Customer extends User {
     private List<Activity> activity = new ArrayList<>();
     private String address;
     private Date registered_date;
-    private ArrayList<String> dateVisit;
+    private List<String> dateVisit;
 
     public Customer() {
     }
@@ -48,11 +48,11 @@ public class Customer extends User {
         this.registered_date = registered_date;
     }
 
-    public ArrayList<String> getDateVisit() {
+    public List<String> getDateVisit() {
         return dateVisit;
     }
 
-    public void setDateVisit(ArrayList<String> dateVisit) {
+    public void setDateVisit(List<String> dateVisit) {
         this.dateVisit = dateVisit;
     }
 

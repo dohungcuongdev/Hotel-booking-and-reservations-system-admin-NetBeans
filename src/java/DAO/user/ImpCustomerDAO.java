@@ -76,8 +76,8 @@ public class ImpCustomerDAO implements DAOCustomer {
     }
 
     @Override
-    public ArrayList<String> getDateVisit(String username) {
-        ArrayList<String> dateVisits = new ArrayList<>();
+    public List<String> getDateVisit(String username) {
+        List<String> dateVisits = new ArrayList<>();
         new ImpUserDAO().getListFollowUsers().stream().filter((fu) -> (fu.getUsername() != null && fu.getUsername().equals(username))).map((fu) -> fu.getDate_access().toString().substring(0, 10) + fu.getDate_access().toString().substring(19, 28)).forEach((dateVisit) -> {
             if (dateVisits.isEmpty()) {
                 dateVisits.add(dateVisit);
@@ -89,8 +89,8 @@ public class ImpCustomerDAO implements DAOCustomer {
     }
 
     @Override
-    public ArrayList<DataCollection> getListRoomBooked(String username) {
-        ArrayList<DataCollection> roombooked = new ArrayList<>();
+    public List<DataCollection> getListRoomBooked(String username) {
+        List<DataCollection> roombooked = new ArrayList<>();
         new ImpActivityDAO().getAllActivityByUserName(username).stream().filter((act) -> (act.getName().equals("Book Room"))).forEach((act) -> {
             roombooked.add(new DataCollection(act.getTime() + "", act.getDetails().substring(12)));
         });

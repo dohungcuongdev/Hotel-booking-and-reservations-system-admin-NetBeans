@@ -53,3 +53,13 @@ fa-bar-chart-o:before,.fa-bar-chart:before{content:"\f080"}
 .tr-p {
     cursor: pointer;
 }
+
+.midscreen {
+    margin-left: 10%; 
+    margin-top: 12.5%
+}
+
+#login-title {
+    color: #bfa145;
+    font-weight: bold;
+}

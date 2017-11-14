@@ -16,17 +16,17 @@ import model.user.FollowUsers;
  * @author Do Hung Cuong
  */
 public interface DAOUser {
-    public ArrayList<FollowUsers> getListFollowUsers();
+    public List<FollowUsers> getListFollowUsers();
     
-    public Map getFollowUsersMap(ArrayList<FollowUsers> list);
+    public Map getFollowUsersMap(List<FollowUsers> list);
     
-    public Map getFollowUsersMapByIP(ArrayList<FollowUsers> list);
+    public Map getFollowUsersMapByIP(List<FollowUsers> list);
     
-    public Map getFollowUsersMapByOneIP(ArrayList<FollowUsers> list, String ip);
+    public Map getFollowUsersMapByOneIP(List<FollowUsers> list, String ip);
     
-    public Map getMapFollowUsersCountry(ArrayList<FollowUsers> list);
+    public Map getMapFollowUsersCountry(List<FollowUsers> list);
     
-    public String getFollowUsersCountry(ArrayList<FollowUsers> list);
+    public String getFollowUsersCountry(List<FollowUsers> list);
     
-    public List<ChartData> getListFollowUsersChartData(ArrayList<FollowUsers> list);
+    public List<ChartData> getListFollowUsersChartData(List<FollowUsers> list);
 }

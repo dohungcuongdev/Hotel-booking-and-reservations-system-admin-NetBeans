@@ -38,32 +38,32 @@ public class UserServiceImp implements UserService {
     private final DAOActivity activityDAO = new ImpActivityDAO();
 
     @Override
-    public ArrayList<FollowUsers> getListFollowUsers() {
+    public List<FollowUsers> getListFollowUsers() {
         return userDAO.getListFollowUsers();
     }
 
     @Override
-    public Map getFollowUsersMap(ArrayList<FollowUsers> list) {
+    public Map getFollowUsersMap(List<FollowUsers> list) {
         return userDAO.getFollowUsersMap(list);
     }
 
     @Override
-    public Map getFollowUsersMapByIP(ArrayList<FollowUsers> list) {
+    public Map getFollowUsersMapByIP(List<FollowUsers> list) {
         return userDAO.getFollowUsersMapByIP(list);
     }
 
     @Override
-    public Map getFollowUsersMapByOneIP(ArrayList<FollowUsers> list, String ip) {
+    public Map getFollowUsersMapByOneIP(List<FollowUsers> list, String ip) {
         return userDAO.getFollowUsersMapByOneIP(list, ip);
     }
 
     @Override
-    public Map getMapFollowUsersCountry(ArrayList<FollowUsers> list) {
+    public Map getMapFollowUsersCountry(List<FollowUsers> list) {
         return userDAO.getMapFollowUsersCountry(list);
     }
 
     @Override
-    public String getFollowUsersCountry(ArrayList<FollowUsers> list) {
+    public String getFollowUsersCountry(List<FollowUsers> list) {
         return userDAO.getFollowUsersCountry(list);
     }
 
@@ -83,7 +83,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public ArrayList<String> getDateVisit(String username) {
+    public List<String> getDateVisit(String username) {
         return customerDAO.getDateVisit(username);
     }
 
@@ -133,7 +133,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public ArrayList<DataCollection> getListRoomBooked(String username) {
+    public List<DataCollection> getListRoomBooked(String username) {
         return customerDAO.getListRoomBooked(username);
     }
 
@@ -168,7 +168,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public List<ChartData> getListFollowUsersChartData(ArrayList<FollowUsers> list) {
+    public List<ChartData> getListFollowUsersChartData(List<FollowUsers> list) {
         return userDAO.getListFollowUsersChartData(list);
     }
     

@@ -24,9 +24,9 @@ public interface DAOCustomer {
 
     public boolean checkexsitCustomer(String username);
      
-    public ArrayList<String> getDateVisit(String username);
+    public List<String> getDateVisit(String username);
     
-    public ArrayList<DataCollection> getListRoomBooked(String username);
+    public List<DataCollection> getListRoomBooked(String username);
     
     public List<DataCollection> getListRoomCanceled(String username);
     

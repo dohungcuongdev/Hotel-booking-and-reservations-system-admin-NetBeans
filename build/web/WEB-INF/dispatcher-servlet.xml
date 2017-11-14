@@ -40,6 +40,7 @@
         <property name="mappings">
             <props>
                 <prop key="index.htm">index</prop>
+                <prop key="login.htm">login</prop>
                 <prop key="edit-room.htm">edit-room</prop>
                 <prop key="edit-service.htm">edit-service</prop>
                 <prop key="manage-restaurant.htm">manage-restaurant</prop>
@@ -74,6 +75,10 @@
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
     
+    <bean name="login"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="login" />
+    
     <bean name="edit-room"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="edit-room" />
@@ -99,8 +104,8 @@
           p:viewName="follow-user-ip" />   
     
     <bean name="follow-user-chart"
-              class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-              p:viewName="follow-user-chart" />    
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="follow-user-chart" />    
           
     <bean name="manage-users"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
