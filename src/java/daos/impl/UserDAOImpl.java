@@ -20,13 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.user.tracking.ChartData;
 import model.user.tracking.FollowUsers;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import statics.provider.DateTimeCalculator;
 import statics.provider.MathCalculator;
 
