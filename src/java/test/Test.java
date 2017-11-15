@@ -5,12 +5,12 @@
  */
 package test;
 
-import DAO.hotel.ImpRoomDAO;
-import DAO.user.DAOUser;
-import DAO.user.ImpUserDAO;
+import daos.impl.RoomDAOImpl;
+import daos.impl.UserDAOImpl;
 import java.util.List;
 import model.hotel.HotelRoom;
-import model.user.FollowUsers;
+import model.user.tracking.FollowUsers;
+import daos.UserDAO;
 
 /**
  *
@@ -19,7 +19,7 @@ import model.user.FollowUsers;
 public class Test {
 
     public static void main(String args[]) {
-        ImpRoomDAO d = new ImpRoomDAO();
+        RoomDAOImpl d = new RoomDAOImpl();
 
         List<HotelRoom> l = d.getAllRooms();
         System.out.println(l);

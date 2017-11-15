@@ -5,7 +5,7 @@
  */
 package model.hotel;
 
-import model.AppData;
+import statics.AppData;
 
 /**
  *

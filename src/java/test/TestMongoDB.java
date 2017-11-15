@@ -5,8 +5,8 @@
  */
 package test;
 
-import DAO.hotel.ImpRoomDAO;
-import DAO.hotel.ImpServiceDAO;
+import daos.impl.RoomDAOImpl;
+import daos.impl.RestaurantDAOImpl;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -14,14 +14,14 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
-import connectMongoDB.MongoDBConnector;
+import database.MongoDBConnector;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import DAO.hotel.DAORoom;
-import DAO.hotel.DAOService;
 import org.bson.types.ObjectId;
+import daos.RestaurantDAO;
+import daos.RoomDAO;
 
 /**
  *
@@ -132,11 +132,11 @@ public class TestMongoDB {
 
             // test DAO
             System.out.println("\n5. Test roomDAO");
-            DAORoom roomDAO = new ImpRoomDAO();
+            RoomDAO roomDAO = new RoomDAOImpl();
             System.out.println(roomDAO.getAllRooms());
 
             System.out.println("\n5. Test serviceDAO");
-            DAOService serviceDAO = new ImpServiceDAO();
+            RestaurantDAO serviceDAO = new RestaurantDAOImpl();
             System.out.println(serviceDAO.getAllHotelServices());
 
             System.out.println("Are you sure want to drop colection (Yes/No): ");

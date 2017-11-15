@@ -7,9 +7,9 @@ package model.hotel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import model.AppData;
-import service.application.CalculatorService;
-import service.impl.UserServiceImp;
+import statics.AppData;
+import statics.provider.DateTimeCalculator;
+import services.impl.UserServiceImpl;
 
 /**
  *
@@ -129,7 +129,7 @@ public class HotelRoom extends HotelItem {
         if (status.equals("booked")) {
             if (!checkNotNull(booked_by, checkin, checkout)) {
                 return false;
-            } else if (!new UserServiceImp().checkexsitCustomer(booked_by)) {
+            } else if (!new UserServiceImpl().checkexsitCustomer(booked_by)) {
                 return false;
             }
         }
@@ -151,9 +151,9 @@ public class HotelRoom extends HotelItem {
         System.out.println(checkin);
         System.out.println(checkout);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date today = CalculatorService.formatDateTime(format.format(new Date()));
-        Date checkindate = CalculatorService.formatDateTime(checkin);
-        Date checkoutdate = CalculatorService.formatDateTime(checkout);
+        Date today = DateTimeCalculator.formatDateTime(format.format(new Date()));
+        Date checkindate = DateTimeCalculator.formatDateTime(checkin);
+        Date checkoutdate = DateTimeCalculator.formatDateTime(checkout);
         return today.compareTo(checkindate) <= 0 && checkindate.compareTo(checkoutdate) <= 0;
     }
 

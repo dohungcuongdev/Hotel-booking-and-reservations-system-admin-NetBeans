@@ -7,7 +7,7 @@ package controller;
 
 import java.io.IOException;
 import model.user.Administrator;
-import model.AppData;
+import statics.AppData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,24 +16,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Activity;
+import model.user.tracking.Activity;
 import model.LoginBean;
 import model.hotel.HotelRoom;
 import model.hotel.HotelService;
 import model.user.Customer;
-import model.user.FollowUsers;
+import model.user.tracking.FollowUsers;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
-import service.HotelItemService;
-import service.impl.HotelItemServiceImp;
-import service.UserService;
-import service.impl.UserServiceImp;
-import service.impl.ApplicationServiceImp;
-import service.ApplicationService;
+import services.HotelItemService;
+import services.impl.HotelItemServiceImpl;
+import services.UserService;
+import services.impl.UserServiceImpl;
+import services.impl.ApplicationServiceImpl;
+import services.ApplicationService;
 
 /**
  *
@@ -43,9 +43,9 @@ import service.ApplicationService;
 @RequestMapping(value = "/")
 public class MainController {
 
-    private final UserService userService = new UserServiceImp();
-    private final HotelItemService hotelItemService = new HotelItemServiceImp();
-    private final ApplicationService appService = new ApplicationServiceImp();
+    private final UserService userService = new UserServiceImpl();
+    private final HotelItemService hotelItemService = new HotelItemServiceImpl();
+    private final ApplicationService appService = new ApplicationServiceImpl();
 
     //index
     @RequestMapping(value = "index", method = RequestMethod.GET)
